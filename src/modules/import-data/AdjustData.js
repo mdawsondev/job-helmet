@@ -26,7 +26,7 @@ const adjustData = (data) => {
     for (let stdKey of stdKeys) {
       if (!entry.hasOwnProperty(stdKey)) entry[stdKey] = "unavailable";
       elList.push(
-        <li class={stdKey} key={entry.site + stdKey + key}>
+        <li className={stdKey} key={entry.site + stdKey + key}>
           {entry[stdKey]}
         </li>
       )

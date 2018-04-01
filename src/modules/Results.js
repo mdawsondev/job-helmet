@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 import ScrapeSite from './ScrapeSite';
 
-ScrapeSite("GitHub").then(data => console.log(data));
-ScrapeSite("StackOverflow").then(data => console.log(data));
+export default ScrapeSite("GitHub").then(res => console.log(res));
+// ScrapeSite("StackOverflow").then(data => console.log(data));

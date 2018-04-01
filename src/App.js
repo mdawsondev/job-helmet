@@ -2,9 +2,16 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import './modules/Results';
+import ScrapeSite from './modules/ScrapeSite';
 
 class App extends Component {
+  state = { results: "Loading Data" }
+
+  checkResults = () => {
+    ScrapeSite("GitHub")
+    .then(res => this.setState({results: res}));
+  }
+
   render() {
     return (
       <div className="App">
@@ -12,9 +19,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Job Helmet</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>      
+
+        <div className="Results">
+          {this.state.results}
+          {this.checkResults()}
+        </div>
       </div>
     );
   }
