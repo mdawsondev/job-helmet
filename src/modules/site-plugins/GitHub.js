@@ -17,7 +17,8 @@
 //   "url": "http://jobs.github.com/positions/fa2381ba-fdd3-11e6-82c5-5b93b6d5fc76"
 // }]
 
-import getData from './GetData';
+import getData from '../import-data/GetData';
+import adjustData from '../import-data/AdjustData';
 
 const url = 'https://jobs.github.com/positions.json?description=&location=';
 
@@ -38,4 +39,9 @@ const processData = function(data) {
   return output;
 }
 
-export default () => getData(url, 'json').then(data => processData(data));
+const exec = () =>
+  getData(url, 'json')
+  .then(data => processData(data))
+  .then(data => adjustData(data));
+
+export default exec;

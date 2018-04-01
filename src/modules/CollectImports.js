@@ -1,3 +1,4 @@
-import data from './GitHub';
+import getGH from './site-plugins/GitHub';
+import getSO from './site-plugins/StackOverflow';
 
-export default data().then(data => data);
+export default getSO();
