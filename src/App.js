@@ -5,10 +5,20 @@ import './App.css';
 import ScrapeSite from './modules/ScrapeSite';
 
 class App extends Component {
-  state = { results: "Loading Data" }
+  state = { results: "Loading Data",
+            firstRun: true }
 
+  monitor = () => {
+    this.init()
+    setInterval(() => this.checkResults(), 30000);
+  }
+  
+  init = () => {
+    this.setState({firstRun: false});
+    this.checkResults()
+  }
   checkResults = () => {
-    ScrapeSite("GitHub")
+    ScrapeSite("StackOverflow")
     .then(res => this.setState({results: res}));
   }
 
@@ -22,7 +32,7 @@ class App extends Component {
 
         <div className="Results">
           {this.state.results}
-          {this.checkResults()}
+          {this.state.firstRun && this.monitor()}
         </div>
       </div>
     );

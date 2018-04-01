@@ -22,12 +22,22 @@ const adjustData = (data) => {
   for (let key in data) {
     const entry = data[key];
     let elList = [];
-    
     for (let stdKey of stdKeys) {
       if (!entry.hasOwnProperty(stdKey)) entry[stdKey] = "unavailable";
+      
+      let temp = null;
+      if (stdKey === 'description') { // Render description HTML properly.
+        temp = (
+          <details>
+            <summary>Expand Job Description</summary>
+            <span dangerouslySetInnerHTML={{__html: entry[stdKey]}}></span>
+          </details>
+        )
+      }
+
       elList.push(
         <li className={stdKey} key={entry.site + stdKey + key}>
-          {entry[stdKey]}
+          <b>{stdKey}</b>: {temp || entry[stdKey]}
         </li>
       )
     }
