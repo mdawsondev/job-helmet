@@ -26,7 +26,8 @@ const processData = function (data) {
       'title': entry.title[txt],
       // 'location': entry.location[txt],
       'description': entry.description[txt],
-      'company': entry['a10:author']['a10:name'][txt]
+      'company': entry['a10:author']['a10:name'][txt],
+      'site': 'so'
     }
   }
   return output;

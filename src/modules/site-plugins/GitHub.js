@@ -33,7 +33,8 @@ const processData = function(data) {
       'position': entry.type,
       'description': entry.description,
       'company': entry.company,
-      'company_url': entry.company_url
+      'company_url': entry.company_url,
+      'site': 'gh'
     }
   }
   return output;

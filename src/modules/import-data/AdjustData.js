@@ -15,7 +15,8 @@ const adjustData = (data) => {
     'description',
     'company',
     'company_url',
-    'app_url'
+    'app_url',
+    'site'
   ]
 
   for (let key in data) {
@@ -24,10 +25,14 @@ const adjustData = (data) => {
     
     for (let stdKey of stdKeys) {
       if (!entry.hasOwnProperty(stdKey)) entry[stdKey] = "unavailable";
-      elList.push(<li class={stdKey}>{entry[stdKey]}</li>)
+      elList.push(
+        <li class={stdKey} key={entry.site + stdKey + key}>
+          {entry[stdKey]}
+        </li>
+      )
     }
 
-    outData.push(<ul>{elList}</ul>);
+    outData.push(<ul key={entry.site + key}>{elList}</ul>);
   }
 
   return outData;
