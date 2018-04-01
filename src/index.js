@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import data from './modules/Imports';
+import allData from './modules/CollectImports';
 
-console.log(data);
+console.log(allData);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
