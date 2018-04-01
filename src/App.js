@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import ScrapeSite from './modules/ScrapeSite';
-
-ScrapeSite("GitHub").then(data => console.log(data));
-ScrapeSite("StackOverflow").then(data => console.log(data));
+import './modules/Results';
 
 class App extends Component {
   render() {

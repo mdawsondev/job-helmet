@@ -1,8 +1,3 @@
-import getData from '../import-data/GetData';
-import adjustData from '../import-data/AdjustData';
-
-const url = 'https://stackoverflow.com/jobs/feed?';
-
 // a10:author:{a10:name: {#text: "SYBO Games"}}
 // a10:updated:{#text: "2018-03-31T10:48:14Z"}
 // category:(6) [{#text: "linux"}, {…}, {…}, {…}, {…}, {…}]
@@ -12,6 +7,11 @@ const url = 'https://stackoverflow.com/jobs/feed?';
 // location:{@attributes: {xmlns: "https://stackoverflow.com/jobs/"}, #text: "Copenhagen, Denmark"}
 // pubDate:{#text: "Sat, 31 Mar 2018 10:48:14 Z"}
 // title:{#text: "Lead Backend Engineer at SYBO Games (Copenhagen, Denmark)"}
+
+import getData from '../import-data/GetData';
+import adjustData from '../import-data/AdjustData';
+
+const url = 'https://stackoverflow.com/jobs/feed?';
 
 const processData = function (data) {
   const realData = data.rss.channel.item;
