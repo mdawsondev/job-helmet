@@ -8,5 +8,3 @@ export default function getData(url, type) {
     .catch(err => console.log(err));
   return output;
 }
-
-// .then(blob => type === 'xml' ? xmlToJSON(stringToXML(blob)) : blob)
