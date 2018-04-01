@@ -13,17 +13,18 @@ const url = 'https://stackoverflow.com/jobs/feed?';
 // pubDate:{#text: "Sat, 31 Mar 2018 10:48:14 Z"}
 // title:{#text: "Lead Backend Engineer at SYBO Games (Copenhagen, Denmark)"}
 
-const processData = function(data) {
+const processData = function (data) {
   const realData = data.rss.channel.item;
   let output = {};
 
   for (let key in realData) {
     const entry = realData[key],
       txt = '#text';
+
     output[key] = {
       'posted': entry.pubDate[txt],
       'title': entry.title[txt],
-      'location': entry.location[txt],
+      // 'location': entry.location[txt],
       'description': entry.description[txt],
       'company': entry['a10:author']['a10:name'][txt]
     }
