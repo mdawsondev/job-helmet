@@ -39,9 +39,9 @@ const processData = function(data) {
   return output;
 }
 
-const exec = () =>
+const GitHub = () =>
   getData(url, 'json')
   .then(data => processData(data))
   .then(data => adjustData(data));
 
-export default exec;
+export default GitHub;

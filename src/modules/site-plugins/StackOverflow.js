@@ -32,9 +32,9 @@ const processData = function (data) {
   return output;
 }
 
-const exec = () =>
+const StackOverflow = () =>
   getData(url, 'xml')
   .then(data => processData(data))
   .then(data => adjustData(data));
 
-export default exec;
+export default StackOverflow;

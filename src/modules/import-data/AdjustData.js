@@ -15,16 +15,16 @@ const adjustData = (data) => {
     'app_url'
   ]
 
-  for (let stdKey of stdKeys) {
-    for (let key in outData) {
-      const entry = outData[key];
+  for (let key in outData) {
+    const entry = outData[key];
+    for (let stdKey of stdKeys) {
       if (!entry.hasOwnProperty(stdKey)) {
         entry[stdKey] = "unavailable";
       }
     }
   }
 
-  return outData
+  return outData;
 }
 
 export default adjustData;
