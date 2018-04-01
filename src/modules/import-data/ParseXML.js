@@ -1,5 +1,6 @@
 export default function stringToXML(str) {
-  return xmlToJson(new window.DOMParser().parseFromString(str, "text/xml"));
+	const xml = new window.DOMParser().parseFromString(str, "text/xml");
+	return xmlToJson(xml);
 }
 
 // Courtesy of https://davidwalsh.name/convert-xml-json
