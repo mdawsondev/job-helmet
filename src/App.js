@@ -9,13 +9,13 @@ class App extends Component {
             firstRun: true }
 
   monitor = () => {
-    this.init()
     setInterval(() => this.checkResults(), 30000);
   }
   
   init = () => {
     this.setState({firstRun: false});
-    this.checkResults()
+    this.checkResults();
+    this.monitor();    
   }
   checkResults = () => {
     ScrapeSite("StackOverflow")
@@ -32,7 +32,7 @@ class App extends Component {
 
         <div className="Results">
           {this.state.results}
-          {this.state.firstRun && this.monitor()}
+          {this.state.firstRun && this.init()}
         </div>
       </div>
     );
