@@ -1,4 +1,5 @@
 import React from 'react';
+import './CreateCard.css';
 // app_url:"<p><a href="http://www.vanguardjobs.com/job/8106497/senior-front-end-engineer-malvern-pa/">http://www.vanguardjobs.com/job/8106497/senior-front-end-engineer-malvern-pa/</a></p>"
 // company:"Vanguard"
 // company_logo:"http://github-jobs.s3.amazonaws.com/b9211a3a-2dff-11e8-909a-cefbd04204c2.png"
@@ -18,7 +19,16 @@ export default function CreateCard(rawCard) {
     <div className="Card">
       <div className="Card-Head">
         <p className="Card-Head-Title">{rawCard.title}</p>
-        <p className="Card-Head-Company">{rawCard.company}</p>
+      </div>
+      <div className="Card-Body">
+        <p className="Card-Head-Company"><span className="Card-Detail">Company:</span> {rawCard.company}</p>
+        <p className="Card-Body-Posted"><span className="Card-Detail">Posted at:</span> {rawCard.posted}</p>
+        <p className="Card-Body-Location"><span className="Card-Detail">Location:</span> {rawCard.location}</p>
+        <details className="Card-Body-Description">
+          <summary>Read Description</summary>
+          {rawCard.description}
+        </details>
+        {/* <p className="Card-Body-Apply"><span className="Card-Detail">Apply:</span> {rawCard.app_url}</p> */}
       </div>
     </div>
   )

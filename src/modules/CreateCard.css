@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:regular,bold');
+
+.Card {
+  animation: fadein 2s;
+  background-color: #eee;
+  font-family: Roboto;
+  font-size: 10px;
+  max-width: 32rem;
+  margin: 1rem auto;
+}
+
+.Card-Body {
+  padding: 1rem;
+}
+
+.Card-Body > P {
+  margin: 0;
+  padding: 0;
+}
+
+.Card-Detail {
+  font-weight: 600;
+}
+
+.Card-Head {
+  background-color: #ddd;
+  display: flex;
+  font-size: 11px;
+  justify-content: center;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
