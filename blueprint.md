@@ -1,7 +1,7 @@
 # Job Helmet - Blueprint
 
-* _**Updated**: March 31, 2018_
-* _**Version**: 0.1.0_
+* _**Updated**: April 2, 2018_
+* _**Version**: 0.2.0_
 
 This blueprint fleshes out the plan for the devlopment of Job Helmet. It explores architecture, interface, and functionality from a high-level view. The Blueprint document will be expanded as needed; for contributions, please see the contributing document.
 
@@ -20,6 +20,10 @@ Application purpose is to assist users in the ability to scrape job-hunting site
 ## Design
 
 This application will be structured as an interface accepting modular plugins. These modules will house the data required for scraping each site individually, but will return a common layout that can then be processed by the application itself.
+
+### Update
+
+The modular aspect of plugging in each site has been accomplished. At this point each plugin will push a giant list of react nodes, but these are not individualized and should be. These "cards" will each house their own states and can be individually changed, creating the ability to interact with them as piece.
 
 ## Technology
 
