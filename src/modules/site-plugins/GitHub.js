@@ -4,9 +4,11 @@ import getData from '../import-data/GetData';
 export default class GitHub extends Component {
   state = { url: 'https://jobs.github.com/positions.json?description=&location='}
   
-  harvestData = (props) => {
-      getData(this.state.url, 'json')
-      .then(data => this.props.pushData(data, this.processData))
+  harvestData = async () => {
+    return await getData(this.state.url, 'json')
+      .then(data => {
+        return {'data': data, 'cb': this.processData}
+      });
   };
   
   processData = data => {
@@ -26,9 +28,9 @@ export default class GitHub extends Component {
     }
   }
 
-  render() {
-    return (
-      <div>{this.harvestData()}</div>
-    )
-  }
+  // render() {
+  //   return (
+  //     <div>{this.harvestData()}</div>
+  //   )
+  // }
 }

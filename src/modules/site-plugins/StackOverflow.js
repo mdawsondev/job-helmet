@@ -4,9 +4,11 @@ import getData from '../import-data/GetData';
 export default class StackOverflow extends Component {
   state = { url: 'https://stackoverflow.com/jobs/feed?'}
   
-  harvestData = (props) => {
-      getData(this.state.url, 'xml')
-      .then(data => this.props.pushData(data, this.processData))
+  harvestData = async () => {
+    return await getData(this.state.url, 'xml')
+      .then(data => {
+        return {'data': data, 'cb': this.processData}
+      });
   };
   
   processData = data => {
