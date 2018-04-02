@@ -1,5 +1,3 @@
-import React from 'react';
-
 import adjustData from './AdjustData';
 
 function FetchClean(data, cb) {
