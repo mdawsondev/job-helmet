@@ -1,8 +1,3 @@
-// This plugin houses the GitHub data parser and is designed to function
-// independantly of other site plugins.
-//
-// Sample JSON return value; note the array wrapper.
-//
 // [{
 //   "id": "fa2381ba-fdd3-11e6-82c5-5b93b6d5fc76",
 //   "created_at": "Sun Apr 01 16:22:28 UTC 2018",
@@ -17,32 +12,71 @@
 //   "url": "http://jobs.github.com/positions/fa2381ba-fdd3-11e6-82c5-5b93b6d5fc76"
 // }]
 
+// We want to be able to send each new item into a card creater, so this needs to start the moment we begin to sectionalize it. Rather than injecting everything into output, why don't we go ahead and just pass it through the processor, then push it to a state object?
+
+// 1. getData MUST BE BROKEN, THIS CANT PULL ONLY UPDATES
+//   this can be adapted by logging each job and not processessing it
+//   if it's already been processed.
+
+// 2. We need to break apart the data, and process each item that hasn't been processed. We can do this by scanning each item in our data object and checking a unique variable (id in this case); if ID exists in the state, we don't need to bother.
+
+// If we do need to bother, we can take that specific data, and plug it through our processor, then inject that into the normalizer.
+
+// Once the normalizer has been returned, we can turn the result into a react element, and then preserve its state in the updated list of jobs for this plugin.
+
+// This will allow us to disable all jobs related to this plugin at once by passing an "enable/disable" command.
+
+import React, { Component } from 'react';
+
 import getData from '../import-data/GetData';
-import adjustData from '../import-data/AdjustData';
+import FetchClean from '../import-data/FetchClean';
 
-const url = 'https://jobs.github.com/positions.json?description=&location=';
 
-const processData = function(data) {
-  let output = {};
-  for (let key in data) {
-    const entry = data[key];
-    output[key] = {
-      'posted': entry.created_at,
-      'title': entry.title,
-      'location': entry.location,
-      'position': entry.type,
-      'description': entry.description,
-      'company': entry.company,
-      'company_url': entry.company_url,
+export default class GitHub extends Component {
+  state = { url: 'https://jobs.github.com/positions.json?description=&location=',
+            nodes: [],
+            seen: []
+          }
+  
+  harvestData = () => {
+    const cb = this.processData;
+    getData(this.state.url, 'json').then(data => {
+      for (let key in data) {
+        const entry = data[key],
+              seen = this.state.seen,
+              nodes = this.state.nodes;
+
+        if (!seen.includes(entry.id)) {
+          const rawCard = FetchClean(entry, cb);
+          this.setState({
+            nodes: [...nodes, rawCard],
+            seen: [...seen, entry.id]
+          });
+        }
+
+      }
+    })
+  };
+  
+  processData = data => {
+    return {
+      'id': data.id,
+      'posted': data.created_at,
+      'title': data.title,
+      'location': data.location,
+      'position': data.type,
+      'description': data.description,
+      'company': data.company,
+      'company_url': data.company_url,
       'site': 'gh'
     }
   }
-  return output;
+
+  render() {
+    return (
+      <div>
+      {this.init()}
+      </div>
+    )
+  }
 }
-
-const GitHub = () =>
-  getData(url, 'json')
-  .then(data => processData(data))
-  .then(data => adjustData(data));
-
-export default GitHub;
