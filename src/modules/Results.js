@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 
 import FetchClean from './import-data/FetchClean';
 import ScrapeSite from './ScrapeSite';
+import CreateCard from './CreateCard';
 
 class Results extends Component {
   state = { results: "Loading Data",
+            sites: ['github', 'indeed'],
             firstRun: true,
             nodes: [],
             seen: [] };
 
   componentDidMount() {
-    ScrapeSite("github").then(res => this.addData(res.data, res.cb));
-    ScrapeSite("indeed").then(res => this.addData(res.data, res.cb));
-    // ScrapeSite("stackoverflow").then(res => this.addData(res.data, res.cb));
+    const scrape = () => this.scrapeSites(this.state.sites);
+    scrape();
+    setInterval(() => scrape(), 60000)
   }
 
   addData = (inData, cb) => {
@@ -20,17 +22,24 @@ class Results extends Component {
     for (let key in data) {
       const entry = data[key],
         seen = this.state.seen,
-        nodes = this.state.nodes;
+        nodes = this.state.nodes,
+        rawCard = FetchClean(entry, cb),
+        card = CreateCard(rawCard);
       
-        const rawCard = FetchClean(entry, cb);
-        if (!seen.includes(rawCard.id)) {
-        console.log(nodes)
+      if (!seen.includes(rawCard.id)) {
         this.setState({
-          nodes: [...nodes, rawCard],
-          seen: [...seen, rawCard.id]
+          nodes: [...nodes, card],
+          seen: [...seen, rawCard.id],
+          results: nodes
         })
       }
     }
+  }
+
+  scrapeSites = (sites) => {
+    sites.forEach(site => {
+      ScrapeSite(site).then(res => this.addData(res.data, res.cb));
+    });
   }
 
   render() {
