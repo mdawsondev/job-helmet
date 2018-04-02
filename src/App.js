@@ -18,7 +18,7 @@ class App extends Component {
     this.monitor();    
   }
   checkResults = () => {
-    ScrapeSite("StackOverflow")
+    ScrapeSite("indeed")
     .then(res => this.setState({results: res}));
   }
 
