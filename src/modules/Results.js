@@ -30,7 +30,7 @@ componentDidMount() {
 componentWillReceiveProps(nextProps) {
   const query = nextProps.query;
   if (this.state.query !== query) {
-    this.filterData();
+    this.filterData(query);
     this.setState({query: query});
   }
 }
@@ -72,30 +72,27 @@ componentWillReceiveProps(nextProps) {
       .then(res => {
         count++
         this.setState(res)
-        if (count === 3 && this.state.isFirst) {
+        if (count === this.state.sites.length && this.state.isFirst) {
           this.setState({results: this.state.nodes, isFirst: false});
         }
       });
     });
   }
 
-  filterData = () => { // Does .find really make this faster?
-    const output = [];
-    const query = this.props.query.toLowerCase();
-    const match = this.state.nodeless.map(el => {
-      if (el.title.includes(query)) return el.id;
-    })
-    match.forEach(q => output.push(
-      this.state.nodes.find(el => {
-        return q === el.key;
-      })
-    ));
+  filterData = (val) => { 
+    const query = val.toLowerCase(),
+      simple = this.state.nodeless,
+      nodes = this.state.nodes;
+
+    const valid = simple.filter(el => el.title.includes(query)).map(e => e.id);
+    const output = nodes.filter(el => valid.includes(el.key));
+
     this.setState({ results: output })
   }
 
   render() {
     return (
-      <div className="Results">{this.state.results}</div>
+      <div className="Results">{this.state.results.slice(0, 100)}</div>
     )
   }
 }
