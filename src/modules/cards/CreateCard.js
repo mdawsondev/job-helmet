@@ -15,7 +15,7 @@ import './CreateCard.css';
 
 export default function CreateCard(rawCard) {
   return (
-    <div className="Card">
+    <div className="Card" key={rawCard.id}>
       <div className="Card-Head">
         <p className="Card-Head-Title">{rawCard.title}</p>
       </div>

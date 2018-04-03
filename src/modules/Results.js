@@ -3,6 +3,7 @@
 //  consider using flyweight for large volumes.
 // - Filter function is very slow; should index titles and keys
 //  to avoid having to pull so much data.
+// - Search is ignoring latest change and processing old change.
 
 import React, { Component } from 'react';
 
