@@ -1,66 +1,44 @@
 import React, { Component } from 'react';
 
-import FetchClean from './import-data/FetchClean';
+import AddData from './import-data/AddData';
 import ScrapeSite from './import-data/ScrapeSite';
-import CreateCard from './cards/CreateCard';
 
 class Results extends Component {
   state = { results: "Performing first scrape, please wait.",
-  sites: ['indeed', 'stackoverflow'],
-  nodes: [],
-  seen: [],
-  nodeless: [],
-  query: '',
-  isFirst: true,
-};
+    sites: ['indeed', 'stackoverflow'],
+    nodes: [],
+    seen: [],
+    nodeless: [],
+    query: '',
+    isFirst: true,
+  };
 
-componentDidMount() {
-  const scrape = () => this.scrapeSites(this.state.sites);
-  scrape();
-  setInterval(() => scrape(), 60000)
-}
-
-componentWillReceiveProps(nextProps) {
-  const query = nextProps.query;
-  if (this.state.query !== query) {
-    this.filterData(query);
-    this.setState({query: query});
+  componentDidMount() {
+    const scrape = () => this.scrapeSites(this.state.sites);
+    scrape();
+    setInterval(() => scrape(), 60000)
   }
-}
 
-  addData = (inData, cb) => {
-    const data = ('rss' in inData) ? inData.rss.channel.item : inData;
-    let newData = [],
-      newSeen = [],
-      newNodeless = [];
-    
-    for (let key in data) {
-      const entry = data[key],
-        rawCard = FetchClean(entry, cb);
-      if (!this.state.seen.includes(rawCard.id)) {
-        const card = CreateCard(rawCard);     
-        newData.push(card);
-        newSeen.push(rawCard.id);
-        newNodeless.push({
-          title: rawCard.title.toLowerCase(),
-          id: rawCard.id
-        })
-      }
+  componentWillReceiveProps(nextProps) {
+    const query = nextProps.query;
+    if (this.state.query !== query) {
+      this.filterData(query);
+      this.setState({query: query});
     }
-    let output = {
-      seen: this.state.seen.concat(newSeen),
-      nodes: this.state.nodes.concat(newData),
-      nodeless: this.state.nodeless.concat(newNodeless)
-    }
-
-    return output;
   }
 
   scrapeSites = (sites) => {
+    const payload = {
+      nodes: this.state.nodes, 
+      nodeless: this.state.nodeless, 
+      seen: this.state.seen
+    }
+
     let count = 0;
+
     sites.forEach(site => {
       ScrapeSite(site)
-      .then(res => this.addData(res.data, res.cb))
+      .then(res => AddData(res.data, res.cb, payload))
       .then(res => {
         count++
         this.setState(res)
