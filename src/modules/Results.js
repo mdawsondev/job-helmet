@@ -12,17 +12,19 @@ import ScrapeSite from './import-data/ScrapeSite';
 import CreateCard from './cards/CreateCard';
 
 class Results extends Component {
-  state = { results: "Loading Data",
-  sites: ['github', 'indeed'] ,
+  state = { results: "Performing first scrape, please wait.",
+  sites: ['github', 'indeed', 'stackoverflow'],
   nodes: [],
   seen: [],
-  query: this.props.query
+  nodeless: [],
+  query: '',
+  isFirst: true,
 };
 
 componentDidMount() {
   const scrape = () => this.scrapeSites(this.state.sites);
   scrape();
-  setInterval(() => scrape(), 60000)
+  setInterval(() => scrape(), 10000)
 }
 
 componentWillReceiveProps(nextProps) {
@@ -33,38 +35,62 @@ componentWillReceiveProps(nextProps) {
   }
 }
 
-addData = (inData, cb) => {
+  addData = (inData, cb) => {
     const data = ('rss' in inData) ? inData.rss.channel.item : inData;
+
+    let newData = [],
+      newSeen = [],
+      newNodeless = [];
+    
     for (let key in data) {
       const entry = data[key],
-        seen = this.state.seen,
-        nodes = this.state.nodes,
-        rawCard = FetchClean(entry, cb),
-        card = CreateCard(rawCard);
-      
-      if (!seen.includes(rawCard.id)) {
-        this.setState({
-          nodes: [...nodes, card],
-          seen: [...seen, rawCard.id],
-          results: nodes
+        rawCard = FetchClean(entry, cb);
+      if (!this.state.seen.includes(rawCard.id)) {
+        const card = CreateCard(rawCard);     
+        newData.push(card);
+        newSeen.push(rawCard.id);
+        newNodeless.push({
+          title: rawCard.title.toLowerCase(),
+          id: rawCard.id
         })
       }
     }
+    let output = {
+      seen: this.state.seen.concat(newSeen),
+      nodes: this.state.nodes.concat(newData),
+      nodeless: this.state.nodeless.concat(newNodeless)
+    }
+
+    return output;
   }
 
   scrapeSites = (sites) => {
+    let count = 0;
     sites.forEach(site => {
-      ScrapeSite(site).then(res => this.addData(res.data, res.cb));
+      ScrapeSite(site)
+      .then(res => this.addData(res.data, res.cb))
+      .then(res => {
+        count++
+        this.setState(res)
+        if (count === 3 && this.state.isFirst) {
+          this.setState({results: this.state.nodes, isFirst: false});
+        }
+      });
     });
   }
 
-  filterData = () => {
-    const match = this.state.nodes.filter(node => {
-      const head = node.props.children[0];
-      const title = head.props.children.props.children.toLowerCase();
-      return title.includes(this.props.query.toLowerCase());
+  filterData = () => { // Does .find really make this faster?
+    const output = [];
+    const query = this.props.query.toLowerCase();
+    const match = this.state.nodeless.map(el => {
+      if (el.title.includes(query)) return el.id;
     })
-    this.setState({ results: match })
+    match.forEach(q => output.push(
+      this.state.nodes.find(el => {
+        return q === el.key;
+      })
+    ));
+    this.setState({ results: output })
   }
 
   render() {
