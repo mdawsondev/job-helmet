@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import MakePayload from './import-data/MakePayload';
-import ScrapeSite from './import-data/ScrapeSite';
+import Prepare from './import-data/Prepare';
 import Search from './Search';
 
 class Results extends Component {
@@ -13,9 +12,8 @@ class Results extends Component {
   };
 
   componentDidMount() {
-    const scrape = () => this.processSites(this.state.sites);
-    scrape();
-    setInterval(() => scrape(), 60000)
+    this.scrapeSites();
+    setInterval(() => this.scrapeSites(), 60000);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -31,12 +29,11 @@ class Results extends Component {
       .then(res => this.setState(res));
   }
 
-  processSites = (sites) => {
-    sites.forEach(site => {
-      ScrapeSite(site)
-        .then(res => MakePayload(res, this.state))
-        .then(res => this.setState(res))
-    });
+  scrapeSites = () => {
+    this.state.sites.forEach(site => {
+      Prepare(site, this.state)
+        .then(res => this.setState(res));
+    })
   }
 
   render() {
