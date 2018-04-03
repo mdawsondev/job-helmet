@@ -1,7 +1,7 @@
 import CreateCard from '../cards/CreateCard';
 import FetchClean from './FetchClean';
 
-const AddData = (res, payload) => {
+const MakePayload = (res, existing) => {
   const inData = res.data,
     cb = res.cb,
     data = ('rss' in inData) ? inData.rss.channel.item : inData;
@@ -13,7 +13,7 @@ const AddData = (res, payload) => {
   for (let key in data) {
     const entry = data[key],
       rawCard = FetchClean(entry, cb);
-    if (!payload.seen.includes(rawCard.id)) {
+    if (!existing.seen.includes(rawCard.id)) {
       const card = CreateCard(rawCard);     
       newData.push(card);
       newSeen.push(rawCard.id);
@@ -25,10 +25,10 @@ const AddData = (res, payload) => {
   }
 
   return {
-    seen: payload.seen.concat(newSeen),
-    nodes: payload.nodes.concat(newData),
-    nodeless: payload.nodeless.concat(newNodeless)
+    seen: existing.seen.concat(newSeen),
+    nodes: existing.nodes.concat(newData),
+    nodeless: existing.nodeless.concat(newNodeless)
   }
 }
 
-export default AddData;
+export default MakePayload;

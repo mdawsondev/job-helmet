@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import AddData from './import-data/AddData';
+import MakePayload from './import-data/MakePayload';
 import ScrapeSite from './import-data/ScrapeSite';
 
 class Results extends Component {
@@ -28,7 +28,7 @@ class Results extends Component {
   }
 
   scrapeSites = (sites) => {
-    const payload = {
+    const existingData = {
       nodes: this.state.nodes, 
       nodeless: this.state.nodeless, 
       seen: this.state.seen
@@ -38,7 +38,7 @@ class Results extends Component {
 
     sites.forEach(site => {
       ScrapeSite(site)
-      .then(res => AddData(res, payload))
+      .then(res => MakePayload(res, existingData))
       .then(res => {
         count++
         this.setState(res)
