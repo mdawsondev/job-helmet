@@ -14,7 +14,6 @@ import './CreateCard.css';
 // title:"Senior Front End Engineer - CX Journey Lab"
 
 export default function CreateCard(rawCard) {
-  console.log(rawCard)
   return (
     <div className="Card">
       <div className="Card-Head">
@@ -26,7 +25,7 @@ export default function CreateCard(rawCard) {
         <p className="Card-Body-Location"><span className="Card-Detail">Location:</span> {rawCard.location}</p>
         <details className="Card-Body-Description">
           <summary>Read Description</summary>
-          {rawCard.description}
+          <span dangerouslySetInnerHTML={{__html: rawCard.description}}></span>
         </details>
         {/* <p className="Card-Body-Apply"><span className="Card-Detail">Apply:</span> {rawCard.app_url}</p> */}
       </div>

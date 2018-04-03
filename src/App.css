@@ -21,6 +21,13 @@
   font-size: large;
 }
 
+.Search {
+  display: block;
+  margin: 1rem auto;
+  padding: .3rem;
+
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

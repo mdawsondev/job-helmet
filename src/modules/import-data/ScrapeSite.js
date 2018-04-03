@@ -1,6 +1,6 @@
-import GitHub from './site-plugins/GitHub';
-import Indeed from './site-plugins/Indeed';
-import StackOverflow from './site-plugins/StackOverflow';
+import GitHub from '../site-plugins/GitHub';
+import Indeed from '../site-plugins/Indeed';
+import StackOverflow from '../site-plugins/StackOverflow';
 
 let GH = new GitHub();
 let IN = new Indeed();
