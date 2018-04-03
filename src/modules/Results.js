@@ -9,7 +9,6 @@ class Results extends Component {
     sites: ['indeed', 'stackoverflow'],
     nodes: [],
     nodeless: [],
-    query: '',
     seen: []
   };
 
@@ -42,7 +41,10 @@ class Results extends Component {
 
   render() {
     return (
-      <div className="Results">{this.state.results.slice(0, 100)}</div>
+      <div className="Results">
+        <Search update={this.runSearch}></Search>      
+        <div className="List">{this.state.results.slice(0, 100)}</div>
+      </div>
     )
   }
 }

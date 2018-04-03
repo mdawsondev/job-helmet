@@ -6,12 +6,6 @@ import Results from './modules/Results';
 import Search from './modules/Search';
 
 class App extends Component {
-  state = { query: '' };
-
-  update = (input) => {
-    this.setState({ query: input })
-  }
-
   render() {
     return (
       <div className="App">
@@ -19,8 +13,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Job Helmet</h1>
         </header>
-        <Search query={this.state.query} update={this.update}></Search>
-        <Results query={this.state.query}></Results>
+        <Results></Results>
       </div>
     );
   }
