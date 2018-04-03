@@ -1,10 +1,3 @@
-// Known Issues:
-// - Very slow time-complexity for loading large volumes of data,
-//  consider using flyweight for large volumes.
-// - Filter function is very slow; should index titles and keys
-//  to avoid having to pull so much data.
-// - Search is ignoring latest change and processing old change.
-
 import React, { Component } from 'react';
 
 import FetchClean from './import-data/FetchClean';
@@ -36,7 +29,6 @@ componentWillReceiveProps(nextProps) {
 }
 
   addData = (inData, cb) => {
-    console.log('ping');
     const data = ('rss' in inData) ? inData.rss.channel.item : inData;
     let newData = [],
       newSeen = [],
