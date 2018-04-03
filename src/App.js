@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 
 import Results from './modules/Results';
-import Search from './modules/Search';
 
 class App extends Component {
   render() {

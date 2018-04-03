@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import getData from '../import-data/GetData';
 
 export default class Indeed extends Component {

@@ -16,11 +16,9 @@ class Results extends Component {
     setInterval(() => this.scrapeSites(), 60000);
   }
 
-  componentWillReceiveProps(nextProps) {
-    const query = nextProps.query;
-    if (this.state.query !== query) {
-      this.runSearch(query);
-      this.setState({query: query});
+  componentDidUpdate(prevProps, prevState) {
+    if (typeof this.state.results === 'string') {
+      this.setState({results: this.state.nodes});
     }
   }
 
