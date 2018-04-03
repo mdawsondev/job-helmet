@@ -1,8 +1,11 @@
 import CreateCard from '../cards/CreateCard';
 import FetchClean from './FetchClean';
 
-const AddData = (inData, cb, payload) => {
-  const data = ('rss' in inData) ? inData.rss.channel.item : inData;
+const AddData = (res, payload) => {
+  const inData = res.data,
+    cb = res.cb,
+    data = ('rss' in inData) ? inData.rss.channel.item : inData;
+  
   let newData = [],
     newSeen = [],
     newNodeless = [];

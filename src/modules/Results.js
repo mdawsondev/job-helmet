@@ -38,7 +38,7 @@ class Results extends Component {
 
     sites.forEach(site => {
       ScrapeSite(site)
-      .then(res => AddData(res.data, res.cb, payload))
+      .then(res => AddData(res, payload))
       .then(res => {
         count++
         this.setState(res)
