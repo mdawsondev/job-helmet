@@ -13,7 +13,7 @@ import CreateCard from './cards/CreateCard';
 
 class Results extends Component {
   state = { results: "Performing first scrape, please wait.",
-  sites: ['github', 'indeed', 'stackoverflow'],
+  sites: ['indeed', 'stackoverflow'],
   nodes: [],
   seen: [],
   nodeless: [],
@@ -24,7 +24,7 @@ class Results extends Component {
 componentDidMount() {
   const scrape = () => this.scrapeSites(this.state.sites);
   scrape();
-  setInterval(() => scrape(), 10000)
+  setInterval(() => scrape(), 60000)
 }
 
 componentWillReceiveProps(nextProps) {
@@ -36,8 +36,8 @@ componentWillReceiveProps(nextProps) {
 }
 
   addData = (inData, cb) => {
+    console.log('ping');
     const data = ('rss' in inData) ? inData.rss.channel.item : inData;
-
     let newData = [],
       newSeen = [],
       newNodeless = [];

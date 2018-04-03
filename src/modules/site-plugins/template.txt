@@ -1,0 +1,26 @@
+// Note: `this.a.prodessData` must be called because the constructor
+// for some reason needs both methods statid to produce an object
+// that can call the other method. If you console.log(this), it
+// sits on `this.a.`.
+
+import React, { Component } from 'react';
+import getData from '../import-data/GetData';
+
+export default class SITENAME extends Component {
+  static harvestData = async () => {
+    const url = 'HTTP://REPLACE.ME'
+    return await getData(url, 'xml') // JSON OR XML
+      .then(data => {
+        return {'data': data, 'cb': this.a.processData}
+      });
+  };
+  
+  static processData = data => {
+    // const txt = '#text'; FOR XML
+    return {
+      'id': data.guid[txt],
+      'title': data.title[txt
+      'site': 'SITENAME'
+    }
+  }
+}

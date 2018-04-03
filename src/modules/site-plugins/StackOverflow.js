@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import getData from '../import-data/GetData';
 
 export default class StackOverflow extends Component {
-  state = { url: 'https://stackoverflow.com/jobs/feed?'}
-  
-  harvestData = async () => {
-    return await getData(this.state.url, 'xml')
+  static harvestData = async () => {
+    const url = 'https://stackoverflow.com/jobs/feed?'
+    return await getData(url, 'xml')
       .then(data => {
-        return {'data': data, 'cb': this.processData}
+        return {'data': data, 'cb': this.a.processData}
       });
   };
   
-  processData = data => {
+  static processData = data => {
     const txt = '#text';
     return {
       'id': data.guid[txt],
@@ -23,11 +22,5 @@ export default class StackOverflow extends Component {
       'company': data['a10:author']['a10:name'][txt],
       'site': 'so'
     }
-  }
-
-  render() {
-    return (
-      <div>{this.harvestData()}</div>
-    )
   }
 }

@@ -2,16 +2,15 @@ import { Component } from 'react';
 import getData from '../import-data/GetData';
 
 export default class GitHub extends Component {
-  state = { url: 'https://jobs.github.com/positions.json?description=&location='}
-  
-  harvestData = async () => {
-    return await getData(this.state.url, 'json')
+  static harvestData = async () => {
+    const url = "https://jobs.github.com/positions.json?description=&location="
+    return await getData(url, 'json')
       .then(data => {
-        return {'data': data, 'cb': this.processData}
+        return {'data': data, 'cb': this.a.processData}
       });
   };
   
-  processData = data => {
+  static processData = data => {
     return {
       'id': data.id,
       'posted': data.created_at,
@@ -27,10 +26,4 @@ export default class GitHub extends Component {
       'site': 'gh'
     }
   }
-
-  // render() {
-  //   return (
-  //     <div>{this.harvestData()}</div>
-  //   )
-  // }
 }

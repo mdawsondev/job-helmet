@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import getData from '../import-data/GetData';
 
 export default class Indeed extends Component {
-  state = { url: 'http://rss.indeed.com/rss?q=developer&l=NC'}
-  
-  harvestData = async () => {
-    return await getData(this.state.url, 'xml')
+  static harvestData = async () => {
+    const url = 'http://rss.indeed.com/rss?q=developer&l=NC'
+    return await getData(url, 'xml')
       .then(data => {
-        return {'data': data, 'cb': this.processData}
+        return {'data': data, 'cb': this.a.processData}
       });
   };
   
-  processData = data => {
+  static processData = data => {
     const txt = '#text';
     return {
       'id': data.guid[txt],
@@ -23,11 +22,5 @@ export default class Indeed extends Component {
       'company': data.source[txt],
       'site': 'indeed'
     }
-  }
-
-  render() {
-    return (
-      <div>{this.harvestData()}</div>
-    )
   }
 }
