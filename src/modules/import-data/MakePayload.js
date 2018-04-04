@@ -1,5 +1,7 @@
-import CreateCard from '../cards/CreateCard';
 import FetchClean from './FetchClean';
+import React from 'react'
+import Card from '../cards/Card';
+
 
 const MakePayload = (res, existing) => {
   const inData = res.data,
@@ -14,7 +16,9 @@ const MakePayload = (res, existing) => {
     const entry = data[key],
       rawCard = FetchClean(entry, cb);
     if (!existing.seen.includes(rawCard.id)) {
-      const card = CreateCard(rawCard);
+
+      const card = <Card rawCard={rawCard} key={rawCard.id}></Card>;
+
       newData.push(card);
       newSeen.push(rawCard.id);
       newNodeless.push({
@@ -25,9 +29,9 @@ const MakePayload = (res, existing) => {
   }
 
   return {
-    seen: existing.seen.concat(newSeen),
-    nodes: existing.nodes.concat(newData),
-    nodeless: existing.nodeless.concat(newNodeless)
+    seen: [...existing.seen, ...newSeen],
+    nodes: [...existing.nodes, ...newData],
+    nodeless: [...existing.nodeless, ...newNodeless]
   }
 }
 

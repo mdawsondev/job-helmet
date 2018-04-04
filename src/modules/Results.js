@@ -4,7 +4,7 @@ import Prepare from './import-data/Prepare';
 import Search from './Search';
 
 class Results extends Component {
-  state = { results: "Performing first scrape, please wait.",
+  state = { display: '',
     sites: ['indeed', 'stackoverflow'],
     nodes: [],
     nodeless: [],
@@ -17,8 +17,8 @@ class Results extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (typeof this.state.results === 'string') {
-      this.setState({results: this.state.nodes});
+    if (!this.state.display) {
+      this.setState({display: this.state.nodes});
     }
   }
 
@@ -33,12 +33,12 @@ class Results extends Component {
         .then(res => this.setState(res));
     })
   }
-
+  
   render() {
     return (
       <div className="Results">
-        <Search update={this.runSearch}></Search>      
-        <div className="List">{this.state.results.slice(0, 100)}</div>
+        <Search className="SearchWrapper" update={this.runSearch}></Search>
+        <div className="CardWrapper">{this.state.display.slice(0, 100)}</div>
       </div>
     )
   }
