@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Prepare from './import-data/Prepare';
 import Search from './Search';
+import './Results.css';
 
 class Results extends Component {
   state = { display: '',
@@ -13,7 +14,7 @@ class Results extends Component {
 
   componentDidMount() {
     this.scrapeSites();
-    setInterval(() => this.scrapeSites(), 60000);
+    setInterval(() => this.scrapeSites(), 60 * 1000);
   }
 
   componentDidUpdate(prevProps, prevState) {
