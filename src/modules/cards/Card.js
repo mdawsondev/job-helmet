@@ -15,11 +15,15 @@ import './CreateCard.css';
 // title:"Senior Front End Engineer - CX Journey Lab"
 
 export default class Card extends React.Component {
-  state = { isVisible: true }
+  state = { isHidden: false }
+
+  toggleHidden = () => {
+    this.setState({isHidden: true});
+  }
 
   render() {
     return (
-      <div className="Card">
+      <div className="Card" style={this.state.isHidden ? {display: "none"} : {display:"block"} }>
         <div className="Card-Head">
           <p className="Card-Head-Title">{this.props.rawCard.title}</p>
         </div>
@@ -31,6 +35,9 @@ export default class Card extends React.Component {
             <summary>Read Description</summary>
             <span dangerouslySetInnerHTML={{__html: this.props.rawCard.description}}></span>
           </details>
+          <div className="Card-Functions">
+            <p className="Card-Hide" onClick={this.toggleHidden}>Delete</p>
+          </div>
           {/* <p className="Card-Body-Apply"><span className="Card-Detail">Apply:</span> {rawCard.app_url}</p> */}
         </div>
       </div>
