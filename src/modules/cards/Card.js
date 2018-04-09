@@ -27,7 +27,9 @@ export default class Card extends React.Component {
   }
 
   toggleStar = () => {
-    this.setState({isFavorite: !this.state.isFavorite});
+    const newStatus = !this.state.isFavorite;
+    this.props.rawCard.isFavorite = newStatus;    
+    this.setState({isFavorite: newStatus});
   }
 
   render() {
