@@ -3,7 +3,7 @@
 * _**Updated**: April 2, 2018_
 * _**Version**: 0.2.0_
 
-This blueprint fleshes out the plan for the devlopment of Job Helmet. It explores architecture, interface, and functionality from a high-level view. The Blueprint document will be expanded as needed; for contributions, please see the contributing document.
+This blueprint fleshes out the plan for the development of Job Helmet. It explores architecture, interface, and functionality from a high-level view. The Blueprint document will be expanded as needed; for contributions, please see the contributing document.
 
 ## Mission
 
