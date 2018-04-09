@@ -54,6 +54,10 @@
   cursor: pointer;
 }
 
+.Card-Fav > .Card-Head {
+  background-color: goldenrod;
+}
+
 @keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }

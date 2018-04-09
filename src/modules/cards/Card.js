@@ -15,16 +15,24 @@ import './CreateCard.css';
 // title:"Senior Front End Engineer - CX Journey Lab"
 
 export default class Card extends React.Component {
-  state = { isHidden: this.props.rawCard.isHidden }
+  state = { isHidden: this.props.rawCard.isHidden,
+    isFavorite: this.props.rawCard.isFavorite
+  }
 
   toggleHidden = () => {
     this.props.rawCard.isHidden = true;
-    this.setState({isHidden: true});
+    this.setState({isHidden: true,
+      isFavorite: false
+    });
+  }
+
+  toggleStar = () => {
+    this.setState({isFavorite: !this.state.isFavorite});
   }
 
   render() {
     return (
-      <div className="Card" style={this.state.isHidden ? {display: "none"} : {display:"block"} }>
+      <div className={"Card " + (this.state.isFavorite ? "Card-Fav" : "")} style={this.state.isHidden ? {display: "none"} : {display:"block"} }>
         <div className="Card-Head">
           <p className="Card-Head-Title">{this.props.rawCard.title}</p>
         </div>{console.log(this.props.rawCard.isHidden)}
@@ -38,6 +46,7 @@ export default class Card extends React.Component {
           </details>
           <div className="Card-Functions">
             <p className="Card-Hide" onClick={this.toggleHidden}>Delete</p>
+            <p className="Card-Star" onClick={this.toggleStar}>Star</p>
           </div>
           {/* <p className="Card-Body-Apply"><span className="Card-Detail">Apply:</span> {rawCard.app_url}</p> */}
         </div>

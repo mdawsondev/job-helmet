@@ -2,6 +2,7 @@ const adjustData = (data) => {
   let rawCard = data;
   const standard = [
     'isHidden',
+    'isFavorite',
     'posted',
     'title',
     'location',
@@ -13,7 +14,7 @@ const adjustData = (data) => {
     'site'
   ]
   
-  rawCard.isHidden = false;
+  rawCard.isHidden = rawCard.isFavorite = false;
 
   for (let key of standard)
     if (!rawCard.hasOwnProperty(key)) rawCard[key] = "unavailable";
