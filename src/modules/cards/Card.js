@@ -15,9 +15,10 @@ import './CreateCard.css';
 // title:"Senior Front End Engineer - CX Journey Lab"
 
 export default class Card extends React.Component {
-  state = { isHidden: false }
+  state = { isHidden: this.props.rawCard.isHidden }
 
   toggleHidden = () => {
+    this.props.rawCard.isHidden = true;
     this.setState({isHidden: true});
   }
 
@@ -26,7 +27,7 @@ export default class Card extends React.Component {
       <div className="Card" style={this.state.isHidden ? {display: "none"} : {display:"block"} }>
         <div className="Card-Head">
           <p className="Card-Head-Title">{this.props.rawCard.title}</p>
-        </div>
+        </div>{console.log(this.props.rawCard.isHidden)}
         <div className="Card-Body">
           <p className="Card-Head-Company"><span className="Card-Detail">Company:</span> {this.props.rawCard.company}</p>
           <p className="Card-Body-Posted"><span className="Card-Detail">Posted at:</span> {this.props.rawCard.posted}</p>
