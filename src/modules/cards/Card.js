@@ -20,13 +20,12 @@ export default class Card extends React.Component {
   }
 
   toggleHidden = () => {
-    this.props.rawCard.isHidden = true;
-    this.setState({isHidden: true,
-      isFavorite: false
-    });
+    const newStatus = !this.state.isHidden;
+    this.props.rawCard.isHidden = newStatus;
+    this.setState({isHidden: newStatus});
   }
-
-  toggleStar = () => {
+  
+  toggleFav = () => {
     const newStatus = !this.state.isFavorite;
     this.props.rawCard.isFavorite = newStatus;    
     this.setState({isFavorite: newStatus});
@@ -34,7 +33,7 @@ export default class Card extends React.Component {
 
   render() {
     return (
-      <div className={"Card " + (this.state.isFavorite ? "Card-Fav" : "")} style={this.state.isHidden ? {display: "none"} : {display:"block"} }>
+      <div className={"Card " + (this.state.isFavorite ? "Card-Fav" : "")} style={this.state.isHidden ? {opacity: ".2"} : {display:"block"} }>
         <div className="Card-Head">
           <p className="Card-Head-Title">{this.props.rawCard.title}</p>
         </div>{console.log(this.props.rawCard.isHidden)}
@@ -47,8 +46,8 @@ export default class Card extends React.Component {
             <span dangerouslySetInnerHTML={{__html: this.props.rawCard.description}}></span>
           </details>
           <div className="Card-Functions">
-            <p className="Card-Hide" onClick={this.toggleHidden}>Delete</p>
-            <p className="Card-Star" onClick={this.toggleStar}>Star</p>
+            <p className="Card-Star" onClick={this.toggleHidden}>{this.state.isHidden ? 'Unhide' : 'Hide'}</p>
+            <p className="Card-Star" onClick={this.toggleFav}>{this.state.isFavorite ? 'Unsave' : 'Save'}</p>
           </div>
           {/* <p className="Card-Body-Apply"><span className="Card-Detail">Apply:</span> {rawCard.app_url}</p> */}
         </div>

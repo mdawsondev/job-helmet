@@ -6,7 +6,7 @@ import './Results.css';
 
 class Results extends Component {
   state = { display: '',
-    sites: ['indeed', 'stackoverflow'],
+    sites: ['indeed', 'stackoverflow', 'github'],
     nodes: [],
     nodeless: [],
     seen: []
@@ -39,6 +39,7 @@ class Results extends Component {
     return (
       <div className="Results">
         <Search className="SearchWrapper" update={this.runSearch}></Search>
+        <div className="Found"><b>{this.state.display.length.toLocaleString('en-US')}</b> Positions Found</div>
         <div className="CardWrapper">{this.state.display.slice(0, 100)}</div>
       </div>
     )
