@@ -29,9 +29,9 @@ const MakePayload = (res, existing) => {
   }
 
   return {
-    seen: [...existing.seen, ...newSeen],
-    nodes: [...existing.nodes, ...newData],
-    nodeless: [...existing.nodeless, ...newNodeless]
+    seen: newSeen,
+    nodes: newData,
+    nodeless: newNodeless
   }
 }
 

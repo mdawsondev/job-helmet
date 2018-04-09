@@ -31,7 +31,11 @@ class Results extends Component {
   scrapeSites = () => {
     this.state.sites.forEach(site => {
       Prepare(site, this.state)
-        .then(res => this.setState(res));
+        .then(res => this.setState({
+          nodes: [...this.state.nodes, ...res.nodes],
+          nodeless: [...this.state.nodeless, ...res.nodeless],
+          seen: [...this.state.seen, ...res.seen]
+        }));
     })
   }
   
