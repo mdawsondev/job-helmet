@@ -6,7 +6,7 @@ import './Results.css';
 
 class Results extends Component {
   state = { display: '',
-    sites: ['indeed', 'stackoverflow', 'github'],
+    sites: ['github', 'indeed', 'stackoverflow'],
     nodes: [],
     nodeless: [],
     seen: [],
@@ -24,7 +24,6 @@ class Results extends Component {
   }
 
   scrapeSites = () => {
-    console.log("scrape")
     this.state.sites.forEach(site => {
       Prepare(site, this.state)
         .then(res => {
