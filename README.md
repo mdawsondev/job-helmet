@@ -14,4 +14,4 @@ At the moment, I don't anticipate any open contributions but will heavily rework
 
 ---
 
-_"Are you taking me for a spa day?"_ - 🧔👑🐀🏏🍝
+_"Are you taking me for a spa day?"_
