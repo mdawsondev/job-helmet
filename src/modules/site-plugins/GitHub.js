@@ -24,7 +24,6 @@ export default class GitHub extends Component {
   };
   
   //data.how_to_apply.match(/(?<=").+(?=")/),
-
   static processData = data => {
     return {
       'id': data.id,

@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:regular,bold');
+@import url('https://fonts.googleapis.com/css?family=Roboto:light,bold');
 
 .Card {
   animation: fadein 2s;
   font-family: Roboto;
+  font-weight: light;
   font-size: 14px;
   max-width: 32rem;
   margin: 1rem auto;
@@ -19,6 +20,11 @@
   padding: 1rem;
 }
 
+.Card-Body p {
+  padding: 0;
+  margin: 0;
+}
+
 .Card-Body-Description summary {
   cursor: pointer;
   padding: 6px;
@@ -32,8 +38,21 @@
   font-weight: 600;
 }
 
+.Card-Functions {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.Card-Functions p {
+  font-weight: bold
+}
+
+.Card-Apply a {
+  text-decoration: none;
+}
+
 .Card-Head {
-  /*background-color: #64ebff;*/
   background-color: #303030;
   color: white;
   border-top-left-radius: 3px;
