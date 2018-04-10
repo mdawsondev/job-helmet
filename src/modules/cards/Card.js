@@ -38,7 +38,7 @@ export default class Card extends React.Component {
           <p className="Card-Head-Title">{this.props.rawCard.title}</p>
         </div>
         <div className="Card-Body">
-          <p className="Card-Head-Company"><span className="Card-Detail">Company:</span> {this.props.rawCard.company}</p>
+          <p className="Card-Body-Company"><span className="Card-Detail">Company:</span> {this.props.rawCard.company}</p>
           <p className="Card-Body-Posted"><span className="Card-Detail">Posted at:</span> {this.props.rawCard.posted}</p>
           <p className="Card-Body-Location"><span className="Card-Detail">Location:</span> {this.props.rawCard.location}</p>
           <details className="Card-Body-Description">
@@ -46,7 +46,7 @@ export default class Card extends React.Component {
             <span dangerouslySetInnerHTML={{__html: this.props.rawCard.description}}></span>
           </details>
           <div className="Card-Functions">
-            <p className="Card-Star" onClick={this.toggleHidden}>{this.state.isHidden ? 'Unhide' : 'Hide'}</p>
+            <p className="Card-Hide" onClick={this.toggleHidden}>{this.state.isHidden ? 'Unhide' : 'Hide'}</p>
             <p className="Card-Star" onClick={this.toggleFav}>{this.state.isFavorite ? 'Unsave' : 'Save'}</p>
           </div>
           {/* <p className="Card-Body-Apply"><span className="Card-Detail">Apply:</span> {rawCard.app_url}</p> */}

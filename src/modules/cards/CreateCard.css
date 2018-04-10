@@ -50,8 +50,11 @@
   text-align: center;
 }
 
-.Card-Hide {
+.Card-Hide,
+.Card-Star,
+.Card-Body-Description {
   cursor: pointer;
+  user-select: none;
 }
 
 .Card-Fav > .Card-Head {
