@@ -10,6 +10,7 @@ class Results extends Component {
     nodes: [],
     nodeless: [],
     seen: [],
+    query: ''
   };
 
   componentDidMount() {
@@ -23,14 +24,20 @@ class Results extends Component {
   }
 
   scrapeSites = () => {
+    console.log("scrape")
     this.state.sites.forEach(site => {
       Prepare(site, this.state)
-        .then(res => this.setState({
-          display: [...this.state.nodes, ...res.nodes],
-          nodes: [...this.state.nodes, ...res.nodes],
-          nodeless: [...this.state.nodeless, ...res.nodeless],
-          seen: [...this.state.seen, ...res.seen]
-        }));
+        .then(res => {
+          this.setState({
+            nodes: [...this.state.nodes, ...res.nodes],
+            nodeless: [...this.state.nodeless, ...res.nodeless],
+            seen: [...this.state.seen, ...res.seen]
+          });
+
+          if (!this.state.query) {
+            this.setState({display: this.state.nodes});
+          }
+        });
     })
   }
   
