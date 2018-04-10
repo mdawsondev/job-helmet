@@ -3,7 +3,8 @@ import getData from '../import-data/GetData';
 
 export default class GitHub extends Component {
   static harvestData = async () => {
-    const url = 'https://jobs.github.com/positions.json?description=&location=';
+    const url = 'https://jobs.github.com/positions.json?description=&location=',
+          pgCount = 3;
 
     const fetchLoop = async (count) => {
       let dataCollection = [];
@@ -15,16 +16,11 @@ export default class GitHub extends Component {
       return dataCollection;
     }
 
-    return await fetchLoop(2).then(data => {
+    return await fetchLoop(pgCount).then(data => {
         return {'data': data, 'cb': this.a.processData}
       }
     );
 
-    // This function would return one call.    
-    // return await getData(url, 'json')
-    //   .then(data => {
-    //     return 
-    //   });
   };
   
   static processData = data => {

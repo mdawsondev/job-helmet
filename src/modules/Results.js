@@ -14,8 +14,9 @@ class Results extends Component {
   };
 
   componentDidMount() {
+    let mins = 5;
     this.scrapeSites();
-    setInterval(() => this.scrapeSites(), 60 * 1000);
+    setInterval(() => this.scrapeSites(), (60 * 1000) * mins);
   }
 
   runSearch = (query) => {

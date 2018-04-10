@@ -3,7 +3,8 @@ import getData from '../import-data/GetData';
 
 export default class Indeed extends Component {
   static harvestData = async () => {
-    const url = 'http://rss.indeed.com/rss?q=developer&l=NC';
+    const url = 'http://rss.indeed.com/rss?q=developer&l=NC',
+          pgCount = 400;
 
     const fetchLoop = async (count) => {
       let dataCollection = [];
@@ -15,16 +16,11 @@ export default class Indeed extends Component {
       return dataCollection;
     }
 
-    return await fetchLoop(500).then(data => {
+    return await fetchLoop(pgCount).then(data => {
         return {'data': data, 'cb': this.a.processData}
       }
     );
 
-    // This function would return one call.
-    // return await getData(url, 'xml')
-    //   .then(data => {
-    //     return {'data': data, 'cb': this.a.processData}
-    //   });
   };
   
   static processData = data => {

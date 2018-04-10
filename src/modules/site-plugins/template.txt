@@ -3,6 +3,12 @@
 // that can call the other method. If you console.log(this), it
 // sits on `this.a.`.
 
+// This function would return one call.    
+// return await getData(url, '<JSONorXML>')
+//   .then(data => {
+//     return {'data': data, 'cb': this.a.processData}
+//   });
+
 import React, { Component } from 'react';
 import getData from '../import-data/GetData';
 
