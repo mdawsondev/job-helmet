@@ -20,6 +20,10 @@
   padding: 1rem;
 }
 
+.Card-Detail-Link {
+  text-decoration: none; 
+}
+
 .Card-Body p {
   padding: 0;
   margin: 0;
