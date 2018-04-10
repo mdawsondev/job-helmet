@@ -6,7 +6,7 @@ import './Results.css';
 
 class Results extends Component {
   state = { display: '',
-    sites: ['github', 'indeed', 'stackoverflow'],
+    sites: ['stackoverflow'],
     nodes: [],
     nodeless: [],
     seen: [],

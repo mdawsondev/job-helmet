@@ -6,6 +6,7 @@ export default class StackOverflow extends Component {
     const url = 'https://stackoverflow.com/jobs/feed?'
     return await getData(url, 'xml')
       .then(data => {
+        console.log(data);
         return {'data': data, 'cb': this.a.processData}
       });
   };
@@ -16,7 +17,7 @@ export default class StackOverflow extends Component {
       'id': data.guid[txt],
       'posted': data.pubDate[txt],
       'title': data.title[txt],
-      // 'location': data.location[txt],
+      'location': data.location ? data.location[txt] : 'Unknown',
       'description': data.description[txt],
       'category': data.category,
       'company': data['a10:author']['a10:name'][txt],

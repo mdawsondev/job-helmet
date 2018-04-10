@@ -21,7 +21,7 @@ const adjustData = (data) => {
   rawCard.isHidden = rawCard.isFavorite = false;
 
   for (let key of standard) {
-    if (!rawCard.hasOwnProperty(key)) rawCard[key] = "unavailable";
+    if (!rawCard.hasOwnProperty(key)) rawCard[key] = "Unknown";
 
     if (key === 'citydataLoc') {
       let loc = encodeURI(rawCard['location']);
