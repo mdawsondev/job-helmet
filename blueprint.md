@@ -21,7 +21,7 @@ Application purpose is to assist users in the ability to scrape job-hunting site
 
 ## Design Goals
 
-1. ~~Modular plguins should scrape sites and return a common pattern for processing.~~.
+1. ~~Modular plugins should scrape sites and return a common pattern for processing.~~.
 2. A word cloud will allow users to add positive and negative booleon search values.
 3. Categories will process as "hidden" and "saved," and will be easily filtered.
 4. Users should be able to populate their results via their interested keywords.

@@ -33,7 +33,7 @@ export default class Indeed extends Component {
       'description': data.description[txt],
       'app_url': data.link[txt],
       'company': data.source[txt],
-      'site': 'indeed'
+      'site': 'Indeed'
     }
   }
 }

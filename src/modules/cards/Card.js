@@ -48,8 +48,8 @@ export default class Card extends React.Component {
           <div className="Card-Functions">
             <p className="Card-Hide" onClick={this.toggleHidden}>{this.state.isHidden ? 'Unhide' : 'Hide'}</p>
             <p className="Card-Star" onClick={this.toggleFav}>{this.state.isFavorite ? 'Unsave' : 'Save'}</p>
+            <p className="Card-Apply"><a href={this.props.rawCard.app_url} target="_blank">Apply to Job</a></p>
           </div>
-          {/* <p className="Card-Body-Apply"><span className="Card-Detail">Apply:</span> {rawCard.app_url}</p> */}
         </div>
       </div>
     )

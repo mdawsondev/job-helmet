@@ -20,7 +20,8 @@ export default class StackOverflow extends Component {
       'description': data.description[txt],
       'category': data.category,
       'company': data['a10:author']['a10:name'][txt],
-      'site': 'so'
+      'site': 'StackOverflow',
+      'app_url': `https://stackoverflow.com/jobs/${data.guid[txt]}`
     }
   }
 }

@@ -23,6 +23,8 @@ export default class GitHub extends Component {
 
   };
   
+  //http://jobs.github.com/positions/${id} Alternate to app_url for GH instead of job.
+
   static processData = data => {
     return {
       'id': data.id,
@@ -31,12 +33,12 @@ export default class GitHub extends Component {
       'location': data.location,
       'position': data.type,
       'description': data.description,
-      'app_url': data.how_to_apply,
+      'app_url': data.how_to_apply.match(/(?<=").+(?=")/),
       'company': data.company,
       'company_url': data.company_url,
       'company_logo': data.company_logo,
       'site_url': data.url,
-      'site': 'gh'
+      'site': 'GitHub'
     }
   }
 }
