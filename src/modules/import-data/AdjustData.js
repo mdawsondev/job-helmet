@@ -11,6 +11,7 @@ const adjustData = (data) => {
     'description',
     'company',
     'company_url',
+    'glassdoor',
     'app_url',
     'site'
   ]
@@ -19,6 +20,12 @@ const adjustData = (data) => {
 
   for (let key of standard) {
     if (!rawCard.hasOwnProperty(key)) rawCard[key] = "unavailable";
+
+    if (key === 'glassdoor') {
+      // const uri = encodeURI(rawCard['company']);
+      const uri = encodeURI(rawCard['company']);
+      rawCard[key] = `https://www.glassdoor.com/Reviews/company-reviews.htm?sc.keyword=${uri}`
+    }
 
     // Date management; 'posted' is user-friendly string,
     // 'postedMS' is numeric datetime to be used for sorting.
