@@ -4,7 +4,7 @@ import getData from '../import-data/GetData';
 export default class Indeed extends Component {
   static harvestData = async () => {
     const url = 'http://rss.indeed.com/rss?q=developer&l=NC',
-          pgCount = 400;
+          pgCount = 300;
 
     const fetchLoop = async (count) => {
       let dataCollection = [];
@@ -23,16 +23,18 @@ export default class Indeed extends Component {
 
   };
   
+  // 'company': data.source[txt],
   static processData = data => {
-    const txt = '#text';
+    const txt = '#text',
+      title = data.title[txt].split(' - ');
     return {
       'id': data.guid[txt],
       'posted': data.pubDate[txt],
-      'title': data.title[txt],
-      'location': data.title[txt].substring(data.title[txt].lastIndexOf("-") + 1),
+      'title': title[0],
+      'location': title[title.length - 1],
       'description': data.description[txt],
       'app_url': data.link[txt],
-      'company': data.source[txt],
+      'company': title[title.length - 2],
       'site': 'Indeed'
     }
   }
