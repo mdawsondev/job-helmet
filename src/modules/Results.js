@@ -9,18 +9,12 @@ class Results extends Component {
     sites: ['indeed', 'stackoverflow', 'github'],
     nodes: [],
     nodeless: [],
-    seen: []
+    seen: [],
   };
 
   componentDidMount() {
     this.scrapeSites();
     setInterval(() => this.scrapeSites(), 60 * 1000);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (!this.state.display) {
-      this.setState({display: this.state.nodes});
-    }
   }
 
   runSearch = (query) => {
@@ -32,6 +26,7 @@ class Results extends Component {
     this.state.sites.forEach(site => {
       Prepare(site, this.state)
         .then(res => this.setState({
+          display: [...this.state.nodes, ...res.nodes],
           nodes: [...this.state.nodes, ...res.nodes],
           nodeless: [...this.state.nodeless, ...res.nodeless],
           seen: [...this.state.seen, ...res.seen]
