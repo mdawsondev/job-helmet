@@ -40,7 +40,7 @@ export default class Card extends React.Component {
         <div className="Card-Body">
           <p className="Card-Body-Company"><span className="Card-Detail">Company:</span> <a href={this.props.rawCard.glassdoor} target="_blank">{this.props.rawCard.company}</a></p>
           <p className="Card-Body-Posted"><span className="Card-Detail">Posted at:</span> {this.props.rawCard.posted}</p>
-          <p className="Card-Body-Location"><span className="Card-Detail">Location:</span> {this.props.rawCard.location}</p>
+          <p className="Card-Body-Location"><span className="Card-Detail">Location:</span> <a href={this.props.rawCard.citydataLoc} target="_blank">{this.props.rawCard.location}</a></p>
           <details className="Card-Body-Description">
             <summary>Read Description</summary>
             <span dangerouslySetInnerHTML={{__html: this.props.rawCard.description}}></span>

@@ -12,6 +12,8 @@ const adjustData = (data) => {
     'company',
     'company_url',
     'glassdoor',
+    'googleLoc',
+    'citydataLoc',
     'app_url',
     'site'
   ]
@@ -21,10 +23,19 @@ const adjustData = (data) => {
   for (let key of standard) {
     if (!rawCard.hasOwnProperty(key)) rawCard[key] = "unavailable";
 
+    if (key === 'citydataLoc') {
+      let loc = encodeURI(rawCard['location']);
+      rawCard[key] = `http://www.city-data.com/cityname2.php?NM=${loc}`
+    }
+
+    if (key === 'googleLoc') {
+      let loc = encodeURI(rawCard['location']);
+      rawCard[key] = `https://www.google.com/search?q=${loc}`;
+    }
+
     if (key === 'glassdoor') {
-      // const uri = encodeURI(rawCard['company']);
       const uri = encodeURI(rawCard['company']);
-      rawCard[key] = `https://www.glassdoor.com/Reviews/company-reviews.htm?sc.keyword=${uri}`
+      rawCard[key] = `https://www.glassdoor.com/Reviews/company-reviews.htm?sc.keyword=${uri}`;
     }
 
     // Date management; 'posted' is user-friendly string,
