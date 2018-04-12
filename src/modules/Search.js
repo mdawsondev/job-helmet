@@ -1,6 +1,5 @@
 import React from 'react';
 import FilterData from './search-features/FilterData';
-import SiteToggle from './search-features/SiteToggle';
 import './Search.css';
 
 export default class Search extends React.Component {

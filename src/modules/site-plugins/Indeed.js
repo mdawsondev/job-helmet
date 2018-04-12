@@ -18,11 +18,8 @@ export default class Indeed extends Component {
           const rssArray = data.rss.channel.item,
             rssUnique = rssArray.filter(e => {
               const id = e.guid['#text'];
-              if (!uniqueKeys.includes(id)) {
-                uniqueKeys.push(id)
-                return e;
-              }
-            })
+              return !uniqueKeys.includes(id) && uniqueKeys.push(id)
+            });
           dataCollection = [...dataCollection, ...rssUnique];
         });
       }
