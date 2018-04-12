@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 
 import Prepare from './import-data/Prepare';
 import Search from './Search';
+import TypeFilters from './search-features/TypeFilters';
 import './Results.css';
 
 class Results extends Component {
   state = { display: '',
     sites: ['indeed', 'stackoverflow', 'github'],
-    sitesBlacklist: [],
     nodes: [],
     nodeless: [],
     seen: [],
@@ -23,6 +23,10 @@ class Results extends Component {
   updateResults = (query) => {
     Search.filterData(query, this.state)
       .then(res => this.setState(res));
+  }
+
+  applyFilter = (adjustedDisplay) => {
+    this.setState({display: adjustedDisplay})
   }
 
   scrapeSites = () => {
@@ -49,6 +53,7 @@ class Results extends Component {
         <div className="Found">
           <b>{this.state.display.length.toLocaleString('en-US')}</b> Positions Found
         </div>
+        <TypeFilters craft={this.applyFilter} existing={this.state.nodes} />
         <div className="CardWrapper">{this.state.display.slice(0, 100)}</div>
       </div>
     )
