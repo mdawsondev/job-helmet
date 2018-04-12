@@ -11,7 +11,7 @@ export default class GitHub extends Component {
       for (let i = 0; i < count; i++) {
         await getData(`${url}&page=${i}`, 'json')
         // eslint-disable-next-line        
-        .then(data => dataCollection = [...dataCollection, ...data]);
+        .then(data => dataCollection = [...dataCollection, ...data])
       }
       return dataCollection;
     }

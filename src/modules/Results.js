@@ -6,7 +6,8 @@ import './Results.css';
 
 class Results extends Component {
   state = { display: '',
-    sites: ['github', 'indeed', 'stackoverflow'],
+    sites: ['indeed', 'stackoverflow', 'github'],
+    sitesBlacklist: [],
     nodes: [],
     nodeless: [],
     seen: [],
@@ -14,12 +15,12 @@ class Results extends Component {
   };
 
   componentDidMount() {
-    let mins = 5;
+    const mins = 5;
     this.scrapeSites();
     setInterval(() => this.scrapeSites(), (60 * 1000) * mins);
   }
 
-  runSearch = (query) => {
+  updateResults = (query) => {
     Search.filterData(query, this.state)
       .then(res => this.setState(res));
   }
@@ -44,8 +45,10 @@ class Results extends Component {
   render() {
     return (
       <div className="Results">
-        <Search className="SearchWrapper" update={this.runSearch}></Search>
-        <div className="Found"><b>{this.state.display.length.toLocaleString('en-US')}</b> Positions Found</div>
+        <Search className="SearchWrapper" update={this.updateResults}></Search>
+        <div className="Found">
+          <b>{this.state.display.length.toLocaleString('en-US')}</b> Positions Found
+        </div>
         <div className="CardWrapper">{this.state.display.slice(0, 100)}</div>
       </div>
     )

@@ -4,19 +4,32 @@ import getData from '../import-data/GetData';
 export default class Indeed extends Component {
   static harvestData = async () => {
     const url = 'http://rss.indeed.com/rss?q=developer&l=NC',
-          pgCount = 300;
+      resultsPerPage = 20,
+      pgCount = 20,
+      totalScrape = resultsPerPage * pgCount;
 
     const fetchLoop = async (count) => {
-      let dataCollection = [];
+      let dataCollection = [],
+        uniqueKeys = [];
       for (let i = 0; i < count; i = i + 20) {
         await getData(`${url}&start=${i}`, 'xml')
         // eslint-disable-next-line
-        .then(data => dataCollection = [...dataCollection, ...data.rss.channel.item]);
+        .then(data => {
+          const rssArray = data.rss.channel.item,
+            rssUnique = rssArray.filter(e => {
+              const id = e.guid['#text'];
+              if (!uniqueKeys.includes(id)) {
+                uniqueKeys.push(id)
+                return e;
+              }
+            })
+          dataCollection = [...dataCollection, ...rssUnique];
+        });
       }
       return dataCollection;
     }
 
-    return await fetchLoop(pgCount).then(data => {
+    return await fetchLoop(totalScrape).then(data => {
         return {'data': data, 'cb': this.a.processData}
       }
     );
