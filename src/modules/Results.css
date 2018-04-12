@@ -19,8 +19,23 @@
   border: 0;
   margin: 1rem .5rem 0;
   padding: .5rem;
-  background-color: #fff;
+  background: none;
   font-weight: bold;
   cursor: pointer;
   color: dimgrey;
+}
+
+.Sort {
+  display: flex;
+  justify-content: center;
+}
+
+.Sort button {
+  border: 0;
+  background: none;
+  background-color: #303030;  
+  color: #F0F0F0;
+}
+
+.Sort select {
 }

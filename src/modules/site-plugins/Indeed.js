@@ -5,7 +5,7 @@ export default class Indeed extends Component {
   static harvestData = async () => {
     const url = 'http://rss.indeed.com/rss?q=developer&l=NC',
       resultsPerPage = 20,
-      pgCount = 20,
+      pgCount = 10,
       totalScrape = resultsPerPage * pgCount;
 
     const fetchLoop = async (count) => {

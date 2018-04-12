@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Prepare from './import-data/Prepare';
 import Search from './Search';
 import TypeFilters from './search-features/TypeFilters';
+import Sort from './search-features/Sort';
 import './Results.css';
 
 class Results extends Component {
@@ -54,6 +55,7 @@ class Results extends Component {
           <b>{this.state.display.length.toLocaleString('en-US')}</b> Positions Found
         </div>
         <TypeFilters craft={this.applyFilter} existing={this.state.nodes} />
+        <Sort craft={this.applyFilter} existing={this.state} />
         <div className="CardWrapper">{this.state.display.slice(0, 100)}</div>
       </div>
     )

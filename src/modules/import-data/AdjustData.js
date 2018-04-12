@@ -52,7 +52,7 @@ const adjustData = (data) => {
       dateTime = date.toLocaleDateString('en-US', options);
       rawCard[key] = dateTime;
     }
-    if (key === 'postedMS') rawCard[key] = Date.parse(rawCard[key]);
+    if (key === 'postedMS') rawCard[key] = Date.parse(rawCard['posted']);
   }
 
   return rawCard;
