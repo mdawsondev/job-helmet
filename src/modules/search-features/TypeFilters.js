@@ -1,4 +1,5 @@
 import React from 'react';
+import './TypeFilters.css';
 
 export default class TypeFilter extends React.Component {
   
@@ -17,9 +18,10 @@ export default class TypeFilter extends React.Component {
   render() {
     return (
       <div className="TypeFilter">
-        <button type="button" value="hidden" onClick={this.typeFilter}>Hidden Only</button>
-        <button type="button" value="saved" onClick={this.typeFilter}>Saved Only</button>
-        <button type="button" value="all" onClick={this.typeFilter}>Show All</button>
+        <span className="TypeDisplay">Display</span>
+        <button type="button" value="all" onClick={this.typeFilter}>All</button>
+        <button type="button" value="hidden" onClick={this.typeFilter}>Hidden</button>
+        <button type="button" value="saved" onClick={this.typeFilter}>Saved</button>
       </div>
     )
   }

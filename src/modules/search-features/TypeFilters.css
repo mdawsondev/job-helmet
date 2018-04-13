@@ -1,0 +1,31 @@
+.TypeFilter {
+  margin: 0 auto;
+  display: inline-flex;
+  width: fit-content;
+  border-right: 1px solid grey;
+}
+
+.TypeFilter button {
+  border: 0;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  background: none;
+  cursor: pointer;
+  color: dimgrey;
+  padding: 0 1rem;
+  transition: color .2s ease;
+}
+
+.TypeFilter button:hover {
+  color: rgb(0, 177, 242);
+}
+
+.TypeDisplay {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  background-color: #303030;
+  color: #F0f0f0;
+  padding: .25rem 1rem;
+  margin: 0;
+  font-size: small;
+}

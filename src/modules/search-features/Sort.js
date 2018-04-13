@@ -1,4 +1,5 @@
 import React from 'react';
+import './Sort.css';
 
 export default class TypeFilter extends React.Component {
   
@@ -28,7 +29,7 @@ export default class TypeFilter extends React.Component {
           <option value="name">Name</option>
           <option value="time">Newest</option>
         </select>
-        <button type="button" value="name" onClick={this.sortBy}>Sort</button>
+        <button type="button" value="name" onClick={this.sortBy}><i className="fas fa-arrow-alt-circle-left fa-sm"></i> Sort</button>
       </div>
     )
   }

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import Prepare from './import-data/Prepare';
 import Search from './Search';
-import TypeFilters from './search-features/TypeFilters';
-import Sort from './search-features/Sort';
 import './Results.css';
 
 class Results extends Component {
@@ -12,6 +10,12 @@ class Results extends Component {
     nodes: [],
     nodeless: [],
     seen: [],
+    blacklist: {
+      title: '',
+      company: '',
+      description: '',
+      location: ''
+    },
     query: ''
   };
 
@@ -46,16 +50,29 @@ class Results extends Component {
         });
     })
   }
+
+  addBlacklist = (item) => {
+    const cat = item[0],
+      val = item[1];
+
+    let construct = {
+      title: this.state.blacklist.title,
+      company: this.state.blacklist.company,
+      description: this.state.blacklist.description,
+      location: this.state.blacklist.location,
+    }
+
+    construct[cat] = this.state.blacklist[cat].concat(`${val} `);
+    this.setState({blacklist: construct});
+  }
   
   render() {
     return (
       <div className="Results">
-        <Search className="SearchWrapper" update={this.updateResults}></Search>
+        <Search className="SearchWrapper" addBlacklist={this.addBlacklist} update={this.updateResults} craft={this.applyFilter} existing={this.state}></Search>
         <div className="Found">
           <b>{this.state.display.length.toLocaleString('en-US')}</b> Positions Found
         </div>
-        <TypeFilters craft={this.applyFilter} existing={this.state.nodes} />
-        <Sort craft={this.applyFilter} existing={this.state} />
         <div className="CardWrapper">{this.state.display.slice(0, 100)}</div>
       </div>
     )

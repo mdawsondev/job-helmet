@@ -1,0 +1,42 @@
+.BlacklistInput {
+  border: 0;
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+.Blacklist {
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.BlacklistWords {
+  padding: 1rem 0 0;
+  color: lightslategray;
+  font-weight: 600;
+  font-size: .8rem;
+}
+
+.Blacklist__btn {
+  color: #eee;
+  background-color: #303030;
+  transition: background-color .2s ease;
+  cursor: pointer;
+  border: 0;
+  border-radius: .3rem;
+  transform: translateY(2px);
+}
+
+.Blacklist__btn:hover {
+  background-color: rgb(0, 177, 242);
+}
+
+.Blacklist select {
+  font-size: .7rem;  
+}
+
+.Blacklist p {
+  margin: 0;
+}
