@@ -11,7 +11,7 @@ export default class Search extends React.Component {
     return (
       <div className="SearchWrapper">
         <div className="Search">
-          <div className="Search__label">Search available positions</div>
+          <div className="Search__label"><i class="fas fa-search"></i>&nbsp;Search Positions</div>
           <input id="Search" className="Search__input" type="text"
             placeholder="Front-end Developer" onChange={this.handleChange} />
         </div>
