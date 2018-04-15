@@ -6,7 +6,7 @@ Job Helmet is a job hunting tool that pulls data from popular job sites and comp
 
 ## 0.3.0 - Overview
 
-![Job Helmet Preview](https://github.com/mdawsondev/job-helmet/blob/master/docs/preview.png = 200x)
+![Job Helmet Preview](https://raw.githubusercontent.com/mdawsondev/job-helmet/master/docs/preview.png)
 
 _Note: Until v1.0.0 the project will cater to the specific needs of finding software engineering jobs; see blueprint for more information._
 
