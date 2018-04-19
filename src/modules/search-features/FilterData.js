@@ -1,16 +1,19 @@
 export default async function FilterData(val, existing) {
     const query = val.toLowerCase(),
-      simple = existing.nodeless,
+      lastQuery = existing.query,
+      display = existing.display,
       nodes = existing.nodes,
       blacklist = existing.blacklist;
-      
-    const valid = simple.filter(el => el.title.includes(query)).map(e => e.id);
-    const output = nodes.filter(el => valid.includes(el.key)).filter(el => {
-      let words = el.props.rawCard.title.toLowerCase().replace(/-\(\)\.,/g, ' ').split(' ')
-      const checker = words.every(e => {
-        return !blacklist.title.includes(e);
-      })
-      return checker ? el : '';
+
+    const results = query.length > lastQuery.length ? display : nodes;
+    
+    const output = results.filter(el => {
+      const title = el.props.rawCard.title.toLowerCase(),
+        words = title.replace(/-\(\)\.,/g, ' ').split(' ');
+
+      if (title.indexOf(query) !== -1) {
+        return words.every(word => !blacklist.title.includes(word))
+      }
     });
 
   return await {

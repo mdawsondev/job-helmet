@@ -14,7 +14,7 @@ export default class Blacklist extends React.Component {
   render() {
     return (
       <div className="Blacklist">
-        <div classNamw="BlacklistFunc">
+        <div className="BlacklistFunc">
           <p>Prevent <input className="BlacklistInput" type="text" placeholder="keyword" size="5" /> from appearing in&nbsp;
             <select className="BlacklistSelect">
               <option value="title">Titles</option>
