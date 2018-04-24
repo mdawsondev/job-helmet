@@ -1,11 +1,20 @@
-.CardWrapper {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
+.Results {
+  background-color: rgba(255, 255, 255, .95);
+  margin: 1rem auto;
+  padding: 2rem 0;
+  max-width: 60rem;
+  border: 1px solid #aaa;
 }
 
-.Found {
-  margin: 1rem 0 0;
+.Card-wrapper {
+  padding: 0 1rem;
+}
+
+.Search-found {
+  color: #555;
   text-align: center;
+}
+
+.Search-number {
+  font-weight: 600;
 }

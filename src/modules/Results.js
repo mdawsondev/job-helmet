@@ -69,11 +69,10 @@ class Results extends Component {
   render() {
     return (
       <div className="Results">
-        <Search className="SearchWrapper" addBlacklist={this.addBlacklist} update={this.updateResults} craft={this.applyFilter} existing={this.state}></Search>
-        <div className="Found">
-          <b>{this.state.display.length.toLocaleString('en-US')}</b> Positions Found
-        </div>
-        <div className="CardWrapper">{this.state.display.slice(0, 100)}</div>
+        <Search addBlacklist={this.addBlacklist} update={this.updateResults} craft={this.applyFilter} existing={this.state} />
+          <p className="Search-found"><span className="Search-number">{this.state.display.length.toLocaleString('en-US')}</span> Jobs Found</p>
+        <div className="Card-wrapper">{this.state.display.slice(0, 10)}</div>
+        <div className="Show-more">More</div>
       </div>
     )
   }

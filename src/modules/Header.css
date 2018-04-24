@@ -1,0 +1,66 @@
+
+.App-header {
+  align-items: center;
+  background-color: #222;
+  color: #FFF;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+.App-intro {
+  display: flex;
+}
+
+.App-logo {
+  height: 70px;
+  width: 70px;
+}
+
+.App-slogan {
+  font-size: .7rem;
+  letter-spacing: 2px;
+  color: #aaa;
+  margin: 0;
+  transform: translateY(-.5rem)
+}
+
+.App-title {
+  margin: 0;
+  font-size: 2rem;
+  font-family: 'Prompt';
+  letter-spacing: .4rem;
+}
+
+.App-title-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+  margin-top: .5rem;
+}
+
+.Navigation li {
+  display: inline-block;
+  letter-spacing: .25rem;
+  list-style: none;
+  margin: 0 1.25rem;
+}
+
+.Navigation li:last-of-type {
+  margin: 0 0 0 1.25rem;
+}
+
+.Navigation-icon {
+  display: block;
+  color: #555;
+  font-size: 1.5rem;
+  margin-bottom: .5rem;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .Navigation {
+    display: none;
+  }
+}

@@ -1,105 +1,71 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:light,bold');
-
 .Card {
-  animation: fadein 2s;
-  font-family: Roboto;
-  font-weight: light;
-  font-size: 14px;
-  max-width: 32rem;
-  margin: 1rem auto;
-  flex: 0 0 30%;
-  transition: opacity 0.5s ease;
-  box-shadow: 0px 2px 4px 2px lightgray;
-}
-
-.Card:hover {
-  box-shadow: 0px 2px 2px 2px lightgray;
-}
-
-.Card-Apply a:hover {
-  color: rgb(0, 177, 242)
-}
-
-.Card-Apply a {
-  transition: color 0.2s ease;  
-  color: rgb(0, 0, 0)
-}
-
-.Card-Body {
-  padding: 1rem;
-}
-
-.Card-Detail-Link {
-  text-decoration: none; 
-}
-
-.Card-Body p {
-  padding: 0;
-  margin: 0;
-}
-
-.Card-Body-Description summary {
-  cursor: pointer;
-  padding: 6px;
- } 
-
-.Card-Body-Description summary:focus {
-  outline: none;
-}
-
-.Card-Detail {
-  font-weight: 600;
-}
-
-.Card-Functions {
   display: flex;
-  justify-content: space-between;
+  padding: 0 0 1rem;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.Card-Logo svg {
+  color: #ddd;
+  font-size: 3rem;
   padding: 1rem;
-}
-
-.Card-Functions p {
-  font-weight: bold
-}
-
-.Card-Apply a {
-  text-decoration: none;
-}
-
-.Card-Head {
-  background-color: #303030;
-  color: white;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  display: flex;
-  font-size: 11px;
-  justify-content: center;
-  padding: 8px;
-  transition: background-color 0.5s ease;
 }
 
 .Card-Head-Title {
+  font-size: 1.2rem;
   font-weight: bold;
-  font-size: 16px;
-  text-align: center;
+  margin: .5rem;
 }
 
-.Card-Hide,
-.Card-Star,
-.Card-Body-Description {
+.Card-Detail {
+  display: none;
+}
+
+.Card-Detail-Link {
+  text-decoration: none;
+  color: #00BCFF;
+}
+
+.Card-Company-Logo {
+  max-width: 2.5rem;
+  padding: 1rem;
+}
+
+.Card-Info {
+  width: 100%;
+}
+
+.Card-Detail-Container {
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  background-color: #f5f5f5;
+  border-radius: .5rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.Card-Body p {
+  margin: 0;
+}
+
+.Card-Apply a {
+  color: #000;
+  text-decoration: none;  
+}
+
+.Card-Apply a:hover {
+  color: #00BCFF;  
+}
+
+.Card-Functions {
   cursor: pointer;
-  user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: fit-content;
+  max-height: 4.6em;
 }
 
-.Card-Fav > .Card-Head {
-  background-color: goldenrod;
-}
-
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes fadeout {
-  from { opacity: 1; }
-  to   { opacity: 0; }
+.Card-Functions p {
+  margin: 0;  
 }

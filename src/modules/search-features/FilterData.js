@@ -14,6 +14,8 @@ export default async function FilterData(val, existing) {
       if (title.indexOf(query) !== -1) {
         return words.every(word => !blacklist.title.includes(word))
       }
+      
+      return null;
     });
 
   return await {

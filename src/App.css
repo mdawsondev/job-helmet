@@ -1,42 +1,20 @@
+/* Contains globals */
+
 @import url('https://fonts.googleapis.com/css?family=Prompt:regular');
 
-.App-intro {
-  font-size: .7rem;
-  position: absolute;
-  letter-spacing: 2px;
-  transform: translate(60px, 14px);
-  color: #aaa;
+body {
+  background: linear-gradient(
+    #00BCFF30, 
+    rgba(255, 255, 255, .5)
+    ), url("https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-.App-logo {
-  width: 80px;
-}
+.Page-break {
+  background: #00BCFF;
+  border: 0;
+  height: 3px;
+  margin: 0;
 
-.App-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 15px;
-  margin-bottom: 20px;
-  background-color: #222;
-  min-height: 100px;
-  color: white;
-}
-
-.App-title {
-  font-size: 2rem;
-  font-family: 'Prompt';
-  letter-spacing: .4rem;
-  margin-left: 2rem;
-}
-
-/*Global CSS */
-
-input:focus {
-  outline: none;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }

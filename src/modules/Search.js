@@ -13,13 +13,13 @@ export default class Search extends React.Component {
 
   render() {
     return (
-      <div className="SearchWrapper">
+      <div className="Search-wrapper">
         <div className="Search">
-          <div className="Search__label"><i className="fas fa-search"></i>&nbsp;Search Positions</div>
-          <input id="Search" className="Search__input" type="text"
-            placeholder="Front-end Developer" onChange={this.handleChange} />
+          <div className="Search-label"><i className="fas fa-search"></i><span className="Search-label-words">Filter</span></div>
+          <input id="Search" className="Search-input" type="text"
+            placeholder="Full Stack Developer" onChange={this.handleChange} />
         </div>
-        <div className="Search__filters">
+        <div className="Search-filters">
           <TypeFilters craft={this.props.craft} existing={this.props.existing.nodes} />
           <Sort craft={this.props.craft} existing={this.props.existing} />
         </div>

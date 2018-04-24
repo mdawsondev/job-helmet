@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default class CardFuncs extends React.Component {
-  hide = () => this.props.cardFuncs.hide();
+  hide = (e) => this.props.cardFuncs.hide(e);
   save = (e) => {
     this.props.cardFuncs.fav();
     let color = e.target.style.color;
@@ -21,7 +21,7 @@ export default class CardFuncs extends React.Component {
           </p>
         <p className="Card-Apply">
           <i className="fas fa-thumbs-up" style={{opacity: .3}}aria-hidden="true"></i>&nbsp;
-          <a href={this.props.cardProps.rawCard.app_url} target="_blank">Apply to Job</a>
+          <a href={this.props.cardProps.rawCard.app_url} target="_blank">Apply</a>
         </p>
       </div>
     )

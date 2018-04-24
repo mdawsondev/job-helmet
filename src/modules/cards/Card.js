@@ -9,10 +9,11 @@ export default class Card extends React.Component {
     isFavorite: this.props.rawCard.isFavorite
   }
 
-  toggleHidden = () => {
+  toggleHidden = (e) => {
     const newStatus = !this.state.isHidden;
     this.props.rawCard.isHidden = newStatus;
     this.setState({isHidden: newStatus});
+    console.log(e)
   }
   
   toggleFav = () => {
@@ -23,10 +24,18 @@ export default class Card extends React.Component {
 
   render() {
     return (
-      <div className={"Card " + (this.state.isFavorite ? "Card-Fav" : "")} style={this.state.isHidden ? {opacity: ".2"} : {display:"block"} }>
-        <CardHead cardProps={this.props} />
-        <CardBody cardProps={this.props} />
-        <CardFuncs cardState={this.state} cardProps={this.props} cardFuncs={{hide: this.toggleHidden, fav: this.toggleFav}} />
+      <div className={"Card " + (this.state.isFavorite ? "Card-Fav" : "")} style={this.state.isHidden ? {opacity: ".2"} : {opacity:"1"} }>
+        <div className="Card-Logo">
+          <img className="Card-Company-Logo" src={this.props.rawCard.company_logo} style={this.props.rawCard.company_logo ? {display: 'initial'} : {display: 'none'}}/>
+          <i className="fas fa-building" style={this.props.rawCard.company_logo ? {display: 'none'} : {display: 'initial'}}></i>
+        </div>
+        <div className="Card-Info">
+          <CardHead cardProps={this.props} />
+          <div className="Card-Detail-Container">
+            <CardBody cardProps={this.props} />
+            <CardFuncs cardState={this.state} cardProps={this.props} cardFuncs={{hide: this.toggleHidden, fav: this.toggleFav}} />
+          </div>
+        </div>
       </div>
     )
   }
